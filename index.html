@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>吃啥啦</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="hero">
+    <span class="hero-deco deco-1" aria-hidden="true">🌶️</span>
+    <span class="hero-deco deco-2" aria-hidden="true">🥢</span>
+    <span class="hero-deco deco-3" aria-hidden="true">🍥</span>
+    <span class="hero-deco deco-4" aria-hidden="true">🧧</span>
+    <h1>吃啥啦？</h1>
+    <p class="hero-sub">說一句話，或打幾個字，選擇困難立刻解決。</p>
+  </div>
+
+  <div class="app">
+
+    <div class="search-card">
+      <button id="talkButton" class="mic-btn">🎤 按這裡說話</button>
+
+      <div class="input-row">
+        <input type="text" id="textInput" placeholder="例如：員林市 麵，或只打「甜點」">
+        <button id="searchButton" class="search-btn">搜尋</button>
+      </div>
+
+      <button id="nearbyButton" class="nearby-btn">📍 附近餐廳</button>
+    </div>
+
+    <div id="dailyPickCard" class="daily-card" style="display:none;">
+      <h4>🌟 今日推薦</h4>
+      <div id="dailyPickContent"></div>
+    </div>
+
+    <div id="result" class="result-card">你說的話會出現在這裡</div>
+
+    <button id="decideButton" class="decide-btn" style="display:none;">🎡 幫我決定！</button>
+    <div id="wheelContainer" class="wheel-card" style="display:none;">
+      <canvas id="wheelCanvas" width="300" height="300"></canvas>
+      <p id="wheelResult" class="wheel-result"></p>
+    </div>
+
+    <div class="panel">
+      <h4>最近搜尋</h4>
+      <div id="historyList"></div>
+    </div>
+
+    <div class="panel">
+      <h4>我的收藏</h4>
+      <div id="favoritesList"></div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

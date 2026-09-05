@@ -1,0 +1,421 @@
+/* ============ 色票 ============
+   ink      #241C15  深邃暖棕黑（背景）
+   paper    #FFF6E9  溫暖米白（卡片）
+   chili    #D62828  辣椒紅（主色/按鈕）
+   turmeric #F4A300  薑黃金（標題/強調）
+   scallion #4C7A57  蔥綠（保留給之後的成功狀態）
+================================= */
+
+:root {
+  --ink: #241C15;
+  --ink-soft: #4A3B2E;
+  --paper: #FFF6E9;
+  --paper-dim: #F0E2CB;
+  --chili: #D62828;
+  --chili-dark: #A81F1F;
+  --turmeric: #F4A300;
+  --line: rgba(36, 28, 21, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  background:
+    radial-gradient(circle, rgba(244, 163, 0, 0.06) 1.5px, transparent 1.5px),
+    var(--ink);
+  background-size: 24px 24px;
+  color: var(--paper);
+  min-height: 100vh;
+}
+
+/* ---------- Hero 標題區 ---------- */
+.hero {
+  position: relative;
+  padding: 72px 24px 56px;
+  text-align: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(214, 40, 40, 0.4), transparent 60%),
+    radial-gradient(circle at 85% 20%, rgba(244, 163, 0, 0.2), transparent 55%),
+    radial-gradient(circle at 10% 80%, rgba(214, 40, 40, 0.15), transparent 50%),
+    var(--ink);
+}
+
+.hero-deco {
+  position: absolute;
+  font-size: 2.2em;
+  opacity: 0.18;
+  filter: grayscale(0.3);
+  pointer-events: none;
+}
+.deco-1 { top: 18%; left: 8%; transform: rotate(-15deg); font-size: 2.6em; }
+.deco-2 { top: 62%; left: 14%; transform: rotate(20deg); font-size: 2em; }
+.deco-3 { top: 22%; right: 10%; transform: rotate(10deg); font-size: 2.4em; }
+.deco-4 { top: 65%; right: 12%; transform: rotate(-10deg); font-size: 1.9em; }
+
+.hero h1 {
+  font-family: "Noto Serif TC", serif;
+  font-weight: 900;
+  font-size: clamp(2.1em, 7vw, 3em);
+  color: var(--turmeric);
+  margin: 0 0 12px;
+  letter-spacing: 0.02em;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 4px 24px rgba(214, 40, 40, 0.5);
+}
+
+.hero-sub {
+  font-size: 1.05em;
+  color: rgba(255, 246, 233, 0.75);
+  margin: 0;
+}
+
+/* ---------- 主要內容區 ---------- */
+.app {
+  max-width: 520px;
+  margin: -32px auto 0;
+  padding: 0 20px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.search-card {
+  position: relative;
+  background: var(--paper);
+  border-radius: 24px;
+  padding: 30px 24px 26px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+.search-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--chili), var(--turmeric), var(--chili));
+}
+
+.mic-btn {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1.1em;
+  font-weight: 700;
+  padding: 17px;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #E4572E, var(--chili));
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(214, 40, 40, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.mic-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(214, 40, 40, 0.45); }
+.mic-btn:active { transform: translateY(0); }
+
+.input-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+#textInput {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  font-family: inherit;
+  font-size: 1em;
+  background: white;
+  color: var(--ink);
+}
+#textInput:focus {
+  outline: 2px solid var(--turmeric);
+  outline-offset: 1px;
+}
+
+.search-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.search-btn:hover { background: var(--ink-soft); }
+
+/* ---------- 搜尋結果卡片 ---------- */
+.result-card {
+  margin-top: 20px;
+  background: var(--paper);
+  border-radius: 20px;
+  padding: 24px;
+  color: var(--ink);
+  line-height: 1.7;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+}
+
+.result-card h3 {
+  font-family: "Noto Serif TC", serif;
+  color: var(--chili-dark);
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.25em;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--paper-dim);
+}
+
+.result-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.result-card li {
+  padding: 16px 4px;
+  border-bottom: 1px solid var(--line);
+  border-radius: 12px;
+  transition: background 0.15s ease;
+}
+.result-card li:hover {
+  background: rgba(214, 40, 40, 0.04);
+}
+.result-card li:last-child { border-bottom: none; }
+
+.result-card a {
+  color: var(--chili-dark);
+  font-weight: 700;
+  text-decoration: none;
+}
+.result-card a:hover { text-decoration: underline; }
+
+.result-card small { color: var(--ink-soft); }
+
+.favBtn, .removeFavorite {
+  margin-left: 8px;
+  border: none;
+  background: var(--paper-dim);
+  color: var(--chili-dark);
+  border-radius: 999px;
+  padding: 3px 10px;
+  cursor: pointer;
+  font-size: 0.85em;
+  font-weight: 700;
+}
+.favBtn:hover, .removeFavorite:hover { background: #E9D8BC; }
+
+/* ---------- 幫我決定 / 轉盤 ---------- */
+.decide-btn {
+  display: block;
+  margin: 20px auto 0;
+  font-family: inherit;
+  font-size: 1.05em;
+  font-weight: 700;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 999px;
+  background: var(--turmeric);
+  color: var(--ink);
+  cursor: pointer;
+}
+.decide-btn:hover { background: #ffb733; }
+
+.wheel-card {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.wheel-card canvas {
+  background: var(--paper);
+  border-radius: 50%;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+.wheel-result {
+  font-family: "Noto Serif TC", serif;
+  font-size: 1.3em;
+  font-weight: 700;
+  color: var(--turmeric);
+  margin-top: 16px;
+}
+
+/* ---------- 歷史紀錄 / 收藏 ---------- */
+.panel {
+  margin-top: 28px;
+}
+
+.panel h4 {
+  font-family: "Noto Serif TC", serif;
+  color: var(--turmeric);
+  font-size: 1.05em;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.historyItem {
+  margin: 4px 6px 4px 0;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 246, 233, 0.3);
+  background: transparent;
+  color: var(--paper);
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-family: inherit;
+}
+.historyItem:hover { background: rgba(255, 246, 233, 0.12); }
+
+#favoritesList ul {
+  list-style: none;
+  padding: 0;
+}
+#favoritesList li {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 246, 233, 0.15);
+  color: var(--paper);
+}
+#favoritesList li:last-child { border-bottom: none; }
+#favoritesList a {
+  color: var(--turmeric);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* ---------- 附近餐廳按鈕 ---------- */
+.nearby-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: white;
+  color: var(--chili-dark);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.98em;
+  cursor: pointer;
+}
+.nearby-btn:hover {
+  background: var(--paper-dim);
+}
+
+/* ---------- 每日推薦 ---------- */
+.daily-card {
+  margin-top: 20px;
+  background: var(--paper);
+  border-radius: 20px;
+  padding: 20px 20px 22px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+}
+
+.daily-card h4 {
+  font-family: "Noto Serif TC", serif;
+  color: var(--chili-dark);
+  margin: 0 0 14px;
+  font-size: 1.1em;
+}
+
+.daily-gallery {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.daily-photo {
+  flex: 1;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.daily-photo:hover {
+  transform: scale(1.03);
+}
+
+.daily-info {
+  padding: 0 2px;
+}
+
+.daily-name {
+  color: var(--chili-dark);
+  font-weight: 700;
+  font-size: 1.15em;
+  font-family: "Noto Serif TC", serif;
+  margin: 0;
+}
+
+.daily-address {
+  color: var(--ink);
+  margin: 8px 0 4px;
+  font-size: 0.95em;
+}
+
+.daily-meta {
+  color: var(--ink-soft);
+  margin: 0 0 14px;
+  font-size: 0.9em;
+}
+
+.daily-map-btn {
+  display: inline-block;
+  color: white;
+  background: var(--chili);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.92em;
+  padding: 9px 18px;
+  border-radius: 999px;
+}
+
+.daily-map-btn:hover {
+  background: var(--chili-dark);
+}
+
+/* ---------- 價格 / 營業狀態標籤 ---------- */
+.tag-open {
+  color: #4C7A57;
+  font-weight: 700;
+}
+.tag-closed {
+  color: var(--chili);
+  font-weight: 700;
+}
+.tag-price {
+  color: var(--ink-soft);
+}
+
+/* ---------- 搜尋結果每個項目的照片 ---------- */
+.result-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.result-photo {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+  border: 2px solid var(--paper-dim);
+  transition: transform 0.15s ease;
+}
+.result-photo:hover {
+  transform: scale(1.05);
+}
+
+.result-item-info {
+  flex: 1;
+  min-width: 0;
+}
